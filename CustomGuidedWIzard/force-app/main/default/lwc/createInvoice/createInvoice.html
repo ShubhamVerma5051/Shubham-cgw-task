@@ -1,0 +1,86 @@
+<template>
+    <div class="slds-card__body slds-card__body_inner">
+        <div class="slds-path">
+            <div class="slds-grid slds-path__track">
+                <div class="slds-grid slds-path__scroller-container">
+                    <div class="slds-path__scroller" role="application">
+                        <div class="slds-path__scroller_inner">
+                            <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                <template if:true={itemsList}>
+                                    <template for:each={itemsList} for:item="item">
+                                        <li data-value={item.pItem} key={item} class={item.classList} role="presentation">
+                                            <a data-value={item.pItem} aria-selected="true" class="slds-path__link" href="javascript:void(0);" id={item.pItem.value} role="option"
+                                                tabindex="0">
+                                                <span class="slds-path__title">{item.pItem}</span>
+                                            </a>
+                                        </li>
+                                    </template>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div if:true={step1}>
+        <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Name">Param Name</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Some Custom Column">URL Param Value</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>origin_record</td>
+                    <td>{origin_record}</td>
+                </tr>
+                <tr>
+                    <td>account</td>
+                    <td>{account}</td>
+                </tr>
+                <tr>
+                    <td>invoice_date</td>
+                    <td>{invoice_date}</td>
+                </tr>
+                <tr>
+                    <td>invoice_due_date</td>
+                    <td>{invoice_due_date}</td>
+                </tr>
+                <tr>
+                    <td>child_relationship_name</td>
+                    <td>{child_relationship_name}</td>
+                </tr>
+                <tr>
+                    <td>line_item_description</td>
+                    <td>{line_item_description}</td>
+                </tr>
+                <tr>
+                    <td>line_item_quantity</td>
+                    <td>{line_item_quantity}</td>
+                </tr>
+                <tr>
+                    <td>unit_price</td>
+                    <td>{unit_price}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="slds-float_right slds-p-vertical_small">
+            <lightning-button variant="brand" label="Show JSON" title="Primary action" onclick={handleClick}></lightning-button>
+        </div>
+    </div>
+
+    <div if:true={step2}>
+        <pre>{invoiceJSON}</pre>
+        <div class="slds-float_right slds-p-vertical_small">
+            <lightning-button variant="brand" label="Proceed to Create Invoice" title="Primary action" onclick={handleClickCreateInvoice}></lightning-button>
+        </div>
+    </div>
+    
+</template>

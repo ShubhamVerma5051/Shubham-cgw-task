@@ -1,0 +1,24 @@
+<apex:page showHeader="false" sidebar="false">
+    <apex:includeLightning />    
+    <div id="LightningComponentid" />    
+    <script>
+    
+    $Lightning.use("c:visualforceAuraApp", function() {
+        $Lightning.createComponent("c:createInvoice",
+          { 
+            origin_record : '{!JSENCODE($CurrentPage.parameters.c__origin_record)}',
+            account : '{!JSENCODE($CurrentPage.parameters.c__account)}',
+            invoice_date : '{!JSENCODE($CurrentPage.parameters.c__invoice_date)}',
+            invoice_due_date : '{!JSENCODE($CurrentPage.parameters.c__invoice_due_date)}',
+            child_relationship_name : '{!JSENCODE($CurrentPage.parameters.c__child_relationship_name)}',
+            line_item_description : '{!JSENCODE($CurrentPage.parameters.c__line_item_description)}',
+            line_item_quantity : '{!JSENCODE($CurrentPage.parameters.c__line_item_quantity)}',
+            unit_price : '{!JSENCODE($CurrentPage.parameters.c__unit_price)}'
+          },
+          "LightningComponentid",
+          function(cmp) {
+             console.log('LWC Componenet added in VF page');
+          });
+    });
+    </script>
+</apex:page>
